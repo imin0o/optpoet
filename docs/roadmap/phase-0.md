@@ -24,8 +24,8 @@
 
 ## P0-B 参照環境と技術スパイク
 
-- [ ] **P0-010** Windows 11 x64 の参照 PC 構成を記録する。
-- [ ] **P0-011** Python と主要ライブラリの対応バージョン候補を検証する。
+- [x] **P0-010** Windows 11 x64 の参照 PC 構成を記録する。→ [reference-pc.md](../environment/reference-pc.md)
+- [x] **P0-011** Python と主要ライブラリの対応バージョン候補を検証する。→ [python-and-libraries.md](../environment/python-and-libraries.md)
 - [ ] **P0-012** 基準となる日本語フォントとライセンスを決定する。
 - [ ] **P0-013** 密度測定と最終描画に使う描画エンジンを決定する。
 - [ ] **P0-014** 同じ文字が密度辞書と最終 PNG で同じ画素になることをスパイクで確認する。
