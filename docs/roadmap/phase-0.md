@@ -36,18 +36,18 @@
 ## P0-C 外部 AI と費用
 
 - [x] **P0-020** 画像解析と文章生成に必要な能力をプロバイダー非依存で定義する。→ [ai-capabilities.md](../decisions/ai-capabilities.md)
-- [ ] **P0-021** 候補モデルの画像送信条件、保持設定、利用規約、地域制約を確認する。
-- [ ] **P0-022** 1作品あたりの呼出回数、トークン量、概算費用の上限を決める。
-- [ ] **P0-023** タイムアウト、レート制限、認証失敗、サービス障害のテスト応答を用意する。
-- [ ] **P0-024** 保存済み応答でネットワークなしに再生できるアダプター契約を決める。
+- [x] **P0-021** 候補モデルの画像送信条件、保持設定、利用規約、地域制約を確認する。→ [ai-provider-candidates.md](../decisions/ai-provider-candidates.md)
+- [x] **P0-022** 1作品あたりの呼出回数、トークン量、概算費用の上限を決める。→ [ai-cost-budget.md](../decisions/ai-cost-budget.md)
+- [x] **P0-023** タイムアウト、レート制限、認証失敗、サービス障害のテスト応答を用意する。→ [ai-failure-responses.md](../decisions/ai-failure-responses.md)
+- [x] **P0-024** 保存済み応答でネットワークなしに再生できるアダプター契約を決める。→ [ai-adapter-contract.md](../decisions/ai-adapter-contract.md)
 
 ## P0-D 検証データと測定
 
-- [ ] **P0-030** 人物、風景、建築、静物を各 3 枚選定する。
-- [ ] **P0-031** 各画像の権利状態、原本ハッシュ、主要構図、難易度を記録する。
-- [ ] **P0-032** 高低コントラスト、細線、平坦部、逆光のカバレッジを確認する。
-- [ ] **P0-033** 人間評価票と評価手順を作成する。
-- [ ] **P0-034** MAE、SSIM、エッジ一致率の計算仕様を固定する。
+- [x] **P0-030** 人物、風景、建築、静物を各 3 枚選定する。→ [validation-dataset.md](../environment/validation-dataset.md)
+- [x] **P0-031** 各画像の権利状態、原本ハッシュ、主要構図、難易度を記録する。→ [validation-dataset.md](../environment/validation-dataset.md)
+- [x] **P0-032** 高低コントラスト、細線、平坦部、逆光のカバレッジを確認する。→ [validation-dataset.md](../environment/validation-dataset.md)
+- [x] **P0-033** 人間評価票と評価手順を作成する。→ [human-evaluation.md](../environment/human-evaluation.md)
+- [x] **P0-034** MAE、SSIM、エッジ一致率の計算仕様を固定する。→ [evaluation-metrics.md](../environment/evaluation-metrics.md)
 - [ ] **P0-035** AC-01〜AC-07 の結果を保存する受入記録テンプレートを作る。
 
 ## P0-E 保存形式
