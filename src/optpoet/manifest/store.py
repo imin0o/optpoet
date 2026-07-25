@@ -1,7 +1,8 @@
 """project manifest の読込と保存。
 
-保存は `manifest.json` を直接書く。原子的保存（`.tmp/` への書込みと置換、直前の有効版の
-保持）は P1-004 で本モジュールの上に載せる（docs/decisions/save-and-migration.md）。
+`save_manifest` は `manifest.json` を直接書く。原子的保存（`.tmp/` への書込みと置換、
+直前の有効版の保持）は `optpoet.project.save` が本モジュールの `prepare_manifest` と
+`serialize_manifest` を使って組み立てる（docs/decisions/save-and-migration.md）。
 """
 
 from __future__ import annotations
@@ -49,6 +50,19 @@ def save_manifest(
     `updated_at` を渡すと `manifest.updated_at` を差し替える。時刻の生成は呼び出し側の
     責務とし、保存を決定的に保つ。読取専用オープンに相当する版は保存を拒否する。
     """
+    payload = prepare_manifest(data, updated_at=updated_at)
+    path.write_bytes(serialize_manifest(payload))
+
+
+def prepare_manifest(
+    data: Mapping[str, Any],
+    *,
+    updated_at: str | None = None,
+) -> dict[str, Any]:
+    """保存する manifest を検証済みの形へ整える。
+
+    読取専用オープンに相当する版（アプリより新しい MINOR）は保存を拒否する。
+    """
     version = SchemaVersion.parse(_schema_version_of(data))
     if is_read_only(version):
         raise ManifestError(
@@ -58,8 +72,12 @@ def save_manifest(
     if updated_at is not None:
         payload["manifest"] = {**payload["manifest"], "updated_at": updated_at}
     validate_manifest(payload)
-    text = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
-    path.write_text(text, encoding="utf-8", newline="\n")
+    return payload
+
+
+def serialize_manifest(payload: Mapping[str, Any]) -> bytes:
+    """manifest を UTF-8（BOM なし・LF）の JSON バイト列へ直列化する。"""
+    return (json.dumps(payload, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
 
 
 def _read_json(path: Path) -> dict[str, Any]:

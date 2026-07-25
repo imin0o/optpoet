@@ -7,7 +7,6 @@
 
 from __future__ import annotations
 
-import re
 from collections.abc import Mapping
 from typing import Any
 
@@ -21,8 +20,7 @@ from optpoet.manifest.schema import (
     Node,
     normalize_key,
 )
-
-_DRIVE_PREFIX = re.compile(r"^[A-Za-z]:")
+from optpoet.storage.layout import relative_path_error
 
 
 def validate_manifest(data: Mapping[str, Any], *, allow_unknown: bool = False) -> None:
@@ -82,17 +80,13 @@ def _check_keys(value: object, path: str) -> None:
 
 
 def _check_relative_path(value: str, path: str) -> None:
-    """I-07: 絶対パス・端末固有パス・親ディレクトリ脱出を拒否する。"""
-    if not value:
-        raise ManifestError(f"{path} が空")
-    if value.startswith(("/", "\\", "~")) or _DRIVE_PREFIX.match(value):
-        raise ManifestError(f"{path} は相対パスである必要がある（I-07）: {value!r}")
-    if "\\" in value:
-        # 区切りは POSIX の `/` 固定（artifact-storage.md）。
-        raise ManifestError(f"{path} の区切りは / である必要がある（I-07）: {value!r}")
-    parts = value.split("/")
-    if ".." in parts or "" in parts:
-        raise ManifestError(f"{path} が不正な要素を含む（I-07）: {value!r}")
+    """I-07: 絶対パス・端末固有パス・親ディレクトリ脱出を拒否する。
+
+    判定規則は配置側と同一のものを使う（optpoet.storage.layout）。
+    """
+    reason = relative_path_error(value)
+    if reason is not None:
+        raise ManifestError(f"{path} {reason}")
 
 
 def _join(path: str, name: str) -> str:

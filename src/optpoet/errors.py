@@ -20,3 +20,15 @@ class ManifestError(OptpoetError):
 
 class ManifestSchemaVersionError(ManifestError):
     """project manifest のスキーマ版を扱えない（未知 MAJOR）。"""
+
+
+class StorageError(OptpoetError):
+    """成果物の配置、内容ハッシュ、キャッシュキーが不正。"""
+
+
+class ArtifactCorruptedError(StorageError):
+    """実体があるが内容ハッシュが一致しない。暗黙に再生成しない（I-02）。"""
+
+
+class SaveAbortedError(StorageError):
+    """保存を中止した。書きかけの新版ではなく直前の有効版が残る。"""
