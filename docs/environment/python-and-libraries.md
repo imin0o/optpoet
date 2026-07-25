@@ -37,7 +37,7 @@
 | scikit-image | SSIM 等の評価 | 0.26.0 | 有 | `import skimage` 成功 |
 | SciPy | 数値処理（scikit-image 依存） | 1.17.1 | 有 | `import` 成功 |
 | Transformers | 文章生成（ローカル/補助） | 4.57.6 | 有（pure-python） | 導入確認 |
-| SudachiPy | 日本語形態素解析（候補） | 0.6.11 | 有（`sudachipy-0.6.11-cp314-cp314-win_amd64.whl`） | wheel 取得確認。採否は P0-016。 |
+| SudachiPy | 日本語形態素解析（採用） | 0.6.11 | 有（`sudachipy-0.6.11-cp314-cp314-win_amd64.whl`） | wheel 取得確認。[P0-016](../roadmap/phase-0.md) で主候補に決定（[morphological-analyzer.md](morphological-analyzer.md)）。 |
 | OR-Tools | 制約探索（任意） | 9.15.6755 | 有（該当版のみ） | wheel 有。MVP では任意。 |
 | Gradio | 初期 UI（候補） | 6.11.0 | 有（pure-python） | 導入確認。UI 決定は P0-017。 |
 | FastAPI | 作品用 Web（将来） | 0.135.1 | 有（pure-python） | 導入確認。 |
@@ -50,7 +50,7 @@
 
 ## 未確定・注意
 
-- **形態素解析器**: どの Python 版にも未導入。SudachiPy 0.6.11 の cp314 wheel は確認済みだが、MeCab 系との比較・辞書配布条件・未知語挙動は [P0-016](../roadmap/phase-0.md) で決定する。本書は「3.14 で導入可能」までを保証する。
+- **形態素解析器**: [P0-016](../roadmap/phase-0.md) で SudachiPy + SudachiDict-core を主候補に決定（[morphological-analyzer.md](morphological-analyzer.md)）。MeCab 系との比較・辞書配布条件・未知語挙動の実測は同書を参照。
 - **外部 LLM API クライアント**: 文章・画像解析は外部 AI 前提（P0-020〜P0-024）。SDK 版は provider 決定後に本書へ追記する。
 - **版固定**: 本書は候補確定まで。requirements/lock の生成は依存確定時に行い、その版と本書の差分は「更新履歴」に残す。
 - 検証は win_amd64 単一環境。他 OS 対応は MVP 対象外（[reference-pc.md](reference-pc.md) 準拠）。
