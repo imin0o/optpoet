@@ -48,7 +48,7 @@
 - [x] **P0-032** 高低コントラスト、細線、平坦部、逆光のカバレッジを確認する。→ [validation-dataset.md](../environment/validation-dataset.md)
 - [x] **P0-033** 人間評価票と評価手順を作成する。→ [human-evaluation.md](../environment/human-evaluation.md)
 - [x] **P0-034** MAE、SSIM、エッジ一致率の計算仕様を固定する。→ [evaluation-metrics.md](../environment/evaluation-metrics.md)
-- [ ] **P0-035** AC-01〜AC-07 の結果を保存する受入記録テンプレートを作る。
+- [x] **P0-035** AC-01〜AC-07 の結果を保存する受入記録テンプレートを作る。→ [acceptance-record.md](../environment/acceptance-record.md)
 
 ## P0-E 保存形式
 
