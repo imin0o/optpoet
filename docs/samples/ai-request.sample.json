@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "capability": "vision",
+  "operation": "analyze_image",
+  "payload": {
+    "image_ref": {
+      "path": "derived/preprocessed/7c2b9e4f61a80d35.png",
+      "hash": "sha256:7c2b9e4f61a80d351b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "image/png",
+      "bytes": 9010412
+    },
+    "aspects": ["subject", "composition", "light", "texture", "atmosphere"],
+    "separate_observation_and_interpretation": true
+  },
+  "params": {
+    "locale": "ja",
+    "max_observed_items": 8,
+    "max_interpreted_items": 5,
+    "seed": 20260725
+  },
+  "request_hash": "sha256:3b81aa50c6f4d2191b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837"
+}

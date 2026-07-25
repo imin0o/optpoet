@@ -1,0 +1,388 @@
+{
+  "manifest": {
+    "schema_version": "1.0",
+    "project_id": "prj-20260725-0001",
+    "app_version": "0.1.0",
+    "created_at": "2026-07-25T09:12:04.118Z",
+    "updated_at": "2026-07-25T10:38:57.902Z",
+    "title": "portrait-1 / 記述モード試作"
+  },
+  "input": {
+    "source": {
+      "path": "input/portrait-1.jpg",
+      "hash": "sha256:a17d3c9e5b204f681b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "image/jpeg",
+      "bytes": 2841733
+    },
+    "pixel_size": { "width": 3000, "height": 2000 },
+    "byte_size": 2841733,
+    "normalization": {
+      "exif_orientation": "applied",
+      "exif_stripped": true,
+      "icc": "converted_to_srgb",
+      "alpha": "none"
+    },
+    "normalized_ref": {
+      "path": "derived/normalized/4d81f0a7c3e59b12.png",
+      "hash": "sha256:4d81f0a7c3e59b121b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "image/png",
+      "bytes": 9124880
+    }
+  },
+  "preprocess": {
+    "crop": { "x": 0, "y": 0, "width": 3000, "height": 2000 },
+    "rotate": 0,
+    "brightness": 0.0,
+    "contrast": 0.15,
+    "gamma": 1.10,
+    "invert": false,
+    "result_ref": {
+      "path": "derived/preprocessed/7c2b9e4f61a80d35.png",
+      "hash": "sha256:7c2b9e4f61a80d351b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "image/png",
+      "bytes": 9010412
+    }
+  },
+  "grid": {
+    "cols": 60,
+    "rows": 40,
+    "cell_aspect": 1.0,
+    "output_size": { "width": 3840, "height": 2560 },
+    "font_size": 48,
+    "line_spacing": 64,
+    "char_spacing": 64,
+    "reading_order": "horizontal_ltr_ttb",
+    "normalization_form": "NFC"
+  },
+  "fonts": {
+    "assignments": {
+      "kanji": "source-han-sans-jp-regular",
+      "hiragana": "source-han-sans-jp-regular",
+      "katakana": "source-han-sans-jp-regular",
+      "symbol": "source-han-sans-jp-regular"
+    },
+    "font_files": [
+      {
+        "font_key": "source-han-sans-jp-regular",
+        "file_name": "SourceHanSansJP-Regular.otf",
+        "hash": "sha256:c93a06e7d148b25f1b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+        "weight": "Regular",
+        "version": "2.004",
+        "license": "OFL-1.1"
+      }
+    ],
+    "render_settings": {
+      "engine": "pillow",
+      "engine_version": "11.3.0",
+      "freetype_version": "2.13.3",
+      "layout_engine": "BASIC",
+      "mode": "L",
+      "pixel_size": 48,
+      "cell": { "width": 64, "height": 64 },
+      "background": 255,
+      "foreground": 0,
+      "antialias": true
+    },
+    "dictionary_id": "dict:sha256:5b1f7d3a9c40e8621b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+    "dictionary_ref": {
+      "path": "derived/dictionary/5b1f7d3a9c40e862.json",
+      "hash": "sha256:5b1f7d3a9c40e8621b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "application/json",
+      "schema_version": "1.0",
+      "bytes": 418022
+    },
+    "missing_glyphs": []
+  },
+  "density": {
+    "method": {
+      "name": "mean_luminance",
+      "gamma": 1.0,
+      "local_contrast": 0.25,
+      "edge_weight": 0.15,
+      "levels": 8
+    },
+    "map_ref": {
+      "path": "derived/density/9f2c4ab1d07e3355.npy",
+      "hash": "sha256:9f2c4ab1d07e33551b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "application/x-npy",
+      "bytes": 19328
+    },
+    "edge_ref": {
+      "path": "derived/density/2e5a8c31b9f7604d.npy",
+      "hash": "sha256:2e5a8c31b9f7604d1b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "application/x-npy",
+      "bytes": 19328
+    }
+  },
+  "semantic_design": {
+    "observed": [
+      "画面中央に人物の顔が大きく写る",
+      "右背景は緑色で階調が平坦",
+      "髪と睫毛に細い輪郭が密集する"
+    ],
+    "interpreted": [
+      "水の名残が光を持つ",
+      "背景の緑は輪郭を持たない時間として置かれる"
+    ],
+    "author_edited": true,
+    "pinned": ["interpreted[0]"],
+    "source_call": "call-0001"
+  },
+  "text": {
+    "mode": "description",
+    "chaos": { "grammar_order": 0.7, "individual_rate": 0.2 },
+    "draft_refs": [
+      {
+        "path": "text/6a9c05d8e1b34f27.txt",
+        "hash": "sha256:6a9c05d8e1b34f271b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+        "media_type": "text/plain",
+        "bytes": 7412
+      }
+    ],
+    "candidate_refs": [
+      {
+        "path": "text/1f38b70c9d5ae426.json",
+        "hash": "sha256:1f38b70c9d5ae4261b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+        "media_type": "application/json",
+        "schema_version": "1.0",
+        "bytes": 128644
+      }
+    ],
+    "final_ref": {
+      "path": "text/c04e93a1b8d276f5.txt",
+      "hash": "sha256:c04e93a1b8d276f51b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "text/plain",
+      "bytes": 7200
+    },
+    "materials": []
+  },
+  "optimization": {
+    "weights": {
+      "visual_similarity": 0.5,
+      "language_quality": 0.25,
+      "image_relevance": 0.15,
+      "style_consistency": 0.10
+    },
+    "tolerance": 0.06,
+    "max_iterations": 40,
+    "seed": 20260725,
+    "algorithm": { "name": "beam_search", "version": "1" },
+    "pins": {
+      "regions": [{ "col": 24, "row": 12, "cols": 6, "rows": 3 }],
+      "phrases": ["水の名残"],
+      "stages": []
+    },
+    "budget_caps": {
+      "currency": "JPY",
+      "cost_cap": 200,
+      "calls_cap": 15,
+      "token_cap": { "input": 60000, "output": 60000 }
+    },
+    "trace_ref": {
+      "path": "trace/b72d4e08a1c96f35.json",
+      "hash": "sha256:b72d4e08a1c96f351b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "application/json",
+      "schema_version": "1.0",
+      "bytes": 264190
+    }
+  },
+  "ai_calls": [
+    {
+      "call_id": "call-0001",
+      "seq": 1,
+      "capability": "vision",
+      "operation": "analyze_image",
+      "request_ref": {
+        "path": "ai/requests/3b81aa50c6f4d219.req.json",
+        "hash": "sha256:3b81aa50c6f4d2191b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+        "media_type": "application/json",
+        "schema_version": "1.0",
+        "bytes": 1842
+      },
+      "response_ref": {
+        "path": "ai/responses/3b81aa50c6f4d219.a1.res.json",
+        "hash": "sha256:d5c81e37b0a942f61b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+        "media_type": "application/json",
+        "schema_version": "1.0",
+        "bytes": 3106
+      },
+      "provenance": {
+        "model_id": {
+          "provider": "example-provider",
+          "model": "example-vision",
+          "version": "2026-06-01",
+          "requested": "example-vision-latest"
+        },
+        "prompt_ref": {
+          "path": "ai/prompts/8c4e1b7a25f9d306.json",
+          "hash": "sha256:8c4e1b7a25f9d3061b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+          "media_type": "application/json",
+          "schema_version": "1.0",
+          "bytes": 2410
+        },
+        "request_hash": "sha256:3b81aa50c6f4d2191b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+        "token_usage": { "input": 2140, "output": 612 },
+        "retry_count": { "attempts": 1, "total_wait_ms": 0, "classes": [] },
+        "route": "live",
+        "created_at": "2026-07-25T09:14:22.740Z"
+      },
+      "status": "ok"
+    },
+    {
+      "call_id": "call-0002",
+      "seq": 2,
+      "capability": "text",
+      "operation": "draft",
+      "request_ref": {
+        "path": "ai/requests/e91c7b3d5a204f86.req.json",
+        "hash": "sha256:e91c7b3d5a204f861b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+        "media_type": "application/json",
+        "schema_version": "1.0",
+        "bytes": 2264
+      },
+      "response_ref": {
+        "path": "ai/responses/e91c7b3d5a204f86.a1.res.json",
+        "hash": "sha256:0af6521be7d3948c1b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+        "media_type": "application/json",
+        "schema_version": "1.0",
+        "bytes": 742
+      },
+      "provenance": {
+        "model_id": {
+          "provider": "example-provider",
+          "model": "example-text",
+          "version": "2026-06-01",
+          "requested": "example-text-latest"
+        },
+        "prompt_ref": {
+          "path": "ai/prompts/2d70f9c4a8e16b53.json",
+          "hash": "sha256:2d70f9c4a8e16b531b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+          "media_type": "application/json",
+          "schema_version": "1.0",
+          "bytes": 3188
+        },
+        "request_hash": "sha256:e91c7b3d5a204f861b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+        "token_usage": null,
+        "retry_count": { "attempts": 3, "total_wait_ms": 7000, "classes": ["F-SERVICE", "F-SERVICE", "F-SERVICE"] },
+        "route": "live",
+        "created_at": "2026-07-25T09:16:03.512Z"
+      },
+      "status": "failed",
+      "failure_class": "F-SERVICE",
+      "superseded_by": "call-0003"
+    },
+    {
+      "call_id": "call-0003",
+      "seq": 3,
+      "capability": "text",
+      "operation": "draft",
+      "request_ref": {
+        "path": "ai/requests/e91c7b3d5a204f86.req.json",
+        "hash": "sha256:e91c7b3d5a204f861b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+        "media_type": "application/json",
+        "schema_version": "1.0",
+        "bytes": 2264
+      },
+      "response_ref": {
+        "path": "ai/responses/e91c7b3d5a204f86.a2.res.json",
+        "hash": "sha256:47b2e08fd9c6153a1b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+        "media_type": "application/json",
+        "schema_version": "1.0",
+        "bytes": 8926
+      },
+      "provenance": {
+        "model_id": {
+          "provider": "example-provider",
+          "model": "example-text",
+          "version": "2026-06-01",
+          "requested": "example-text-latest"
+        },
+        "prompt_ref": {
+          "path": "ai/prompts/2d70f9c4a8e16b53.json",
+          "hash": "sha256:2d70f9c4a8e16b531b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+          "media_type": "application/json",
+          "schema_version": "1.0",
+          "bytes": 3188
+        },
+        "request_hash": "sha256:e91c7b3d5a204f861b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+        "token_usage": { "input": 1880, "output": 2410 },
+        "retry_count": { "attempts": 1, "total_wait_ms": 0, "classes": [] },
+        "route": "live",
+        "created_at": "2026-07-25T09:17:41.088Z"
+      },
+      "status": "ok"
+    }
+  ],
+  "edits": [
+    {
+      "edit_id": "edit-0001",
+      "seq": 4,
+      "at": "2026-07-25T09:41:10.005Z",
+      "kind": "setting",
+      "target": "preprocess.gamma",
+      "change": { "before": 1.00, "after": 1.10 },
+      "invalidated": ["preprocess", "density_map", "edge_map", "optimize", "render"],
+      "note": "背景の平坦部を締める"
+    },
+    {
+      "edit_id": "edit-0002",
+      "seq": 5,
+      "at": "2026-07-25T10:02:36.417Z",
+      "kind": "semantic_edit",
+      "target": "semantic_design.interpreted[0]",
+      "change": { "before": "水が光る", "after": "水の名残が光を持つ" },
+      "invalidated": ["optimize", "render"]
+    },
+    {
+      "edit_id": "edit-0003",
+      "seq": 6,
+      "at": "2026-07-25T10:20:48.230Z",
+      "kind": "pin_change",
+      "target": "optimization.pins.phrases",
+      "change": { "before": [], "after": ["水の名残"] },
+      "invalidated": []
+    }
+  ],
+  "evaluation": {
+    "metrics": {
+      "spec_version": "1.0",
+      "mae_draft": 0.0912,
+      "mae_opt": 0.0685,
+      "improvement_rate": 0.2489,
+      "ssim": 0.7143,
+      "edge_dice": 0.4408,
+      "region_mae": 0.0521
+    },
+    "cell_check": {
+      "expected_cells": 2400,
+      "displayed_chars": 2400,
+      "result": "ok"
+    }
+  },
+  "outputs": {
+    "png_ref": {
+      "path": "outputs/artwork.png",
+      "hash": "sha256:f30b9d7a4c1e86251b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "image/png",
+      "bytes": 1148306
+    },
+    "txt_ref": {
+      "path": "outputs/artwork.txt",
+      "hash": "sha256:c04e93a1b8d276f51b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "text/plain",
+      "bytes": 7200
+    },
+    "render_metadata": {
+      "engine": "pillow",
+      "engine_version": "11.3.0",
+      "freetype_version": "2.13.3",
+      "layout_engine": "BASIC",
+      "mode": "L",
+      "pixel_size": 48,
+      "cell": { "width": 64, "height": 64 },
+      "background": 255,
+      "foreground": 0,
+      "antialias": true
+    }
+  }
+}

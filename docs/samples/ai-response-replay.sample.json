@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "status": "ok",
+  "result": {
+    "observed": [
+      "画面中央に人物の顔が大きく写る",
+      "右背景は緑色で階調が平坦",
+      "髪と睫毛に細い輪郭が密集する"
+    ],
+    "interpreted": [
+      "水が光る",
+      "背景の緑は輪郭を持たない時間として置かれる"
+    ]
+  },
+  "provenance": {
+    "model_id": {
+      "provider": "example-provider",
+      "model": "example-vision",
+      "version": "2026-06-01",
+      "requested": "example-vision-latest"
+    },
+    "prompt_ref": {
+      "path": "ai/prompts/8c4e1b7a25f9d306.json",
+      "hash": "sha256:8c4e1b7a25f9d3061b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "application/json",
+      "schema_version": "1.0",
+      "bytes": 2410
+    },
+    "request_hash": "sha256:3b81aa50c6f4d2191b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+    "token_usage": { "input": 2140, "output": 612 },
+    "retry_count": { "attempts": 1, "total_wait_ms": 0, "classes": [] },
+    "route": "live",
+    "created_at": "2026-07-25T09:14:22.740Z"
+  },
+  "_note": "保存応答実体は再生しても変更しない（provenance は生成時の値のまま / route=live を保持）。再生した事実は manifest 側 ai_calls エントリに route=replay・token_usage=null・新しい seq / created_at で記録する。この _note はサンプル用の注記であり実体には含めない。"
+}

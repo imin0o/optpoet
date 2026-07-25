@@ -1,6 +1,6 @@
 # Phase 0: 要件と検証基盤
 
-**状態**: 進行中  
+**状態**: 完了（2026-07-25、完了ゲート P0-G01〜P0-G05 通過）  
 **目標**: 実装判断、検証データ、外部依存、保存形式を固定し、後工程の手戻りを減らす。  
 **依存**: なし  
 **次**: [Phase 1](phase-1.md)
@@ -52,16 +52,16 @@
 
 ## P0-E 保存形式
 
-- [ ] **P0-040** project manifest の必須項目とスキーマ版規則を定義する。
-- [ ] **P0-041** 中間生成物のファイル配置、内容ハッシュ、キャッシュキーを定義する。
-- [ ] **P0-042** AI 応答、プロンプト、モデル識別子、作者編集の来歴形式を定義する。
-- [ ] **P0-043** API キーをプロジェクトへ含めないことをスキーマテストで保証する。
-- [ ] **P0-044** 原子的保存、読取専用オープン、将来のスキーマ移行方針を決める。
+- [x] **P0-040** project manifest の必須項目とスキーマ版規則を定義する。→ [project-manifest.md](../decisions/project-manifest.md)
+- [x] **P0-041** 中間生成物のファイル配置、内容ハッシュ、キャッシュキーを定義する。→ [artifact-storage.md](../decisions/artifact-storage.md)
+- [x] **P0-042** AI 応答、プロンプト、モデル識別子、作者編集の来歴形式を定義する。→ [provenance-format.md](../decisions/provenance-format.md)
+- [x] **P0-043** API キーをプロジェクトへ含めないことをスキーマテストで保証する。→ [secret-exclusion-test.md](../decisions/secret-exclusion-test.md)
+- [x] **P0-044** 原子的保存、読取専用オープン、将来のスキーマ移行方針を決める。→ [save-and-migration.md](../decisions/save-and-migration.md)
 
 ## 完了ゲート
 
-- [ ] **P0-G01** 未決事項に担当・期限・MVP 影響が設定されている。
-- [ ] **P0-G02** 基準フォントと描画エンジンの実測整合が確認できている。
-- [ ] **P0-G03** 固定 12 画像と評価手順を第三者が再利用できる。
-- [ ] **P0-G04** 外部 AI の費用・送信・保存・障害条件が記録されている。
-- [ ] **P0-G05** project manifest と保存応答のサンプルがレビュー済みである。
+- [x] **P0-G01** 未決事項に担当・期限・MVP 影響が設定されている。→ [open-issues.md](../decisions/open-issues.md)
+- [x] **P0-G02** 基準フォントと描画エンジンの実測整合が確認できている。→ [pixel-identity-spike.md](../environment/pixel-identity-spike.md)（暫定クローズ。基準フォントファイル確定後に [P1-020](phase-1.md) で同一手順で再実測する）
+- [x] **P0-G03** 固定 12 画像と評価手順を第三者が再利用できる。→ [validation-dataset.md](../environment/validation-dataset.md) / [human-evaluation.md](../environment/human-evaluation.md) / [evaluation-metrics.md](../environment/evaluation-metrics.md) / [acceptance-record.md](../environment/acceptance-record.md)
+- [x] **P0-G04** 外部 AI の費用・送信・保存・障害条件が記録されている。→ [ai-cost-budget.md](../decisions/ai-cost-budget.md) / [ai-provider-candidates.md](../decisions/ai-provider-candidates.md) / [ai-failure-responses.md](../decisions/ai-failure-responses.md)
+- [x] **P0-G05** project manifest と保存応答のサンプルがレビュー済みである。→ [manifest-sample-review.md](../decisions/manifest-sample-review.md)（サンプルは [docs/samples/](../samples/)）

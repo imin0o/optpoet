@@ -1,0 +1,29 @@
+{
+  "template_id": "vision.analyze_image.ja",
+  "template_version": "1",
+  "variables": {
+    "aspects": ["subject", "composition", "light", "texture", "atmosphere"],
+    "max_observed_items": 8,
+    "max_interpreted_items": 5,
+    "output_shape": "observed[] / interpreted[]"
+  },
+  "rendered": [
+    {
+      "role": "system",
+      "text": "画像を観察し、観察できた事実と、そこから導いた解釈を分けて日本語で列挙する。事実に推測を混ぜない。人物の身元・氏名・所属を推定しない。"
+    },
+    {
+      "role": "user",
+      "text": "添付画像について、observed に観察事実を最大 8 項目、interpreted に解釈を最大 5 項目挙げる。各項目は一文とする。"
+    }
+  ],
+  "attachments": [
+    {
+      "path": "derived/preprocessed/7c2b9e4f61a80d35.png",
+      "hash": "sha256:7c2b9e4f61a80d351b6e0a94c25d7f38a4c9e10b73d6528fa0b41d9c6e2f8837",
+      "media_type": "image/png",
+      "bytes": 9010412
+    }
+  ],
+  "locale": "ja"
+}
