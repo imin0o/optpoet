@@ -52,6 +52,23 @@
 - UI: 初期版は Gradio または Streamlit
 - データ保存: JSON + SQLite
 
+## 開発
+
+Python 3.14（参照 PC 実測。3.12 / 3.13 はフォールバック）。
+
+```bash
+uv venv --python 3.14 .venv
+uv pip install --python .venv/Scripts/python.exe -e ".[dev]"
+
+.venv/Scripts/ruff check .        # lint
+.venv/Scripts/ruff format .       # 整形
+.venv/Scripts/mypy                # 型検査（strict）
+.venv/Scripts/pytest              # テスト
+```
+
+- 本体コードは [src/optpoet/](src/optpoet/)、テストは [tests/](tests/)。
+- `spikes/` は Phase 0 の検証記録であり、lint / 型検査の対象外。
+
 ## ドキュメント
 
 - [docs/concept.md](docs/concept.md) — 作品コンセプト・光学的韻律の定義

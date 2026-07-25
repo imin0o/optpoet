@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "optpoet"
+version = "0.1.0"
+description = "光学的韻律を持つ画像詩生成システム"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "UNLICENSED" }
+# 版の根拠: docs/environment/python-and-libraries.md（Python 3.14.3 / win_amd64 実測）
+dependencies = [
+    "numpy>=2.4",
+    "pillow>=11.3",
+    "opencv-python>=4.13",
+    "scikit-image>=0.26",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4",
+    "ruff>=0.14",
+    "mypy>=1.18",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/optpoet"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+# spikes/ は P0 の検証記録であり、本体の規約対象外。
+extend-exclude = ["spikes"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM", "RUF"]
+# 日本語の全角記号を曖昧文字として警告しない。
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.mypy]
+python_version = "3.12"
+files = ["src", "tests"]
+strict = true
+warn_unreachable = true
+
+# 型スタブ未提供の依存（P1-B 以降で使用）
+[[tool.mypy.overrides]]
+module = ["cv2.*", "skimage.*"]
+ignore_missing_imports = true
