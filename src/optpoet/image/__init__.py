@@ -9,6 +9,15 @@ from optpoet.image.normalize import (
     NormalizedImage,
     normalize_image,
 )
+from optpoet.image.preprocess import (
+    ADJUST_LIMIT,
+    MAX_GAMMA,
+    MIN_GAMMA,
+    Crop,
+    Preprocess,
+    PreprocessedImage,
+    apply_preprocess,
+)
 from optpoet.image.validate import (
     SUPPORTED_FORMATS,
     ImageInfo,
@@ -16,11 +25,18 @@ from optpoet.image.validate import (
 )
 
 __all__ = [
+    "ADJUST_LIMIT",
+    "MAX_GAMMA",
+    "MIN_GAMMA",
     "SUPPORTED_FORMATS",
     "WHITE",
+    "Crop",
     "ImageInfo",
     "Normalization",
     "NormalizedImage",
+    "Preprocess",
+    "PreprocessedImage",
+    "apply_preprocess",
     "inspect_image",
     "normalize_image",
 ]
