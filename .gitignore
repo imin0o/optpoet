@@ -16,6 +16,9 @@ dist/
 *.db
 /output/
 /cache/
+# 完了ゲートの取得資産と実行結果（原本は再配布しない）
+/gates/*/assets/
+/gates/*/out/
 /dictionaries/*.json
 !/dictionaries/.gitkeep
 

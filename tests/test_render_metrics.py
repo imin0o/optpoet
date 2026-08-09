@@ -1,4 +1,4 @@
-"""自動評価指標（P1-045 / AC-03）。"""
+"""自動評価指標（P1-045）。AC-03 の判定値ではなく補助指標（evaluation-metrics.md 3.2）。"""
 
 from __future__ import annotations
 

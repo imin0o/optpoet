@@ -1,4 +1,5 @@
-"""位置ごとの密度誤差（P1-033）と基準配置（P1-034）。"""
+"""位置ごとの密度誤差（P1-033）と基準配置（P1-034）。MAE は AC-03 の判定値
+（evaluation-metrics.md 3.1）。"""
 
 from __future__ import annotations
 

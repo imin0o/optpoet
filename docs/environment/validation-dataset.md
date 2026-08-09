@@ -1,6 +1,6 @@
 # 検証用データセット（12枚選定）
 
-**状態**: P0-030 選定完了 / P0-031 原本ハッシュ確定 / P0-032 カバレッジ実測検証完了  
+**状態**: P0-030 選定完了 / P0-031 原本ハッシュ確定 / P0-032 カバレッジ実測検証完了（2026-08-10 architecture-2 差し替え・再測定）  
 **目的**: MVP 判定用の固定検証画像 12 枚を、権利が明確な素材から選定して固定する。  
 **関連**: [quality-and-operations.md](../quality-and-operations.md) 6章、[requirements.md](../requirements.md)、[open-issues.md](../decisions/open-issues.md) OI-002
 
@@ -53,7 +53,7 @@
 | slot | ファイル / 出典 | ライセンス | 作者 | 難易度 | 主要構図 |
 | --- | --- | --- | --- | --- | --- |
 | architecture-1 | [Canterbury Cathedral Tower Ceiling.jpg](https://commons.wikimedia.org/wiki/File:Canterbury_Cathedral_Tower_Ceiling.jpg) | CC0-1.0 | Michael D Beckwith | 細かい輪郭 / 高コントラスト | 見上げた扇状ヴォールト天井、放射状の細密トレーサリーが対称 |
-| architecture-2 | [St Marys Cathedral Nave Edinburgh.jpg](https://commons.wikimedia.org/wiki/File:St_Marys_Cathedral_Nave_Edinburgh.jpg) | CC0-1.0 | Michael D Beckwith | 高コントラスト / 逆光 / 細かい輪郭 | 身廊の一点透視、暗い列柱と奥の明るい祭壇・窓の輝度差 |
+| architecture-2 | [Chester Cathedral Nave.jpg](https://commons.wikimedia.org/wiki/File:Chester_Cathedral_Nave.jpg) | CC0-1.0 | Michael D Beckwith | 高コントラスト / 逆光 / 細かい輪郭 | 身廊の一点透視、暗い列柱・ヴォールトと奥の明るい聖歌隊席スクリーンの輝度差 |
 | architecture-3 | [Brick Wall Building.jpg](https://commons.wikimedia.org/wiki/File:Brick_Wall_Building.jpg) | CC0-1.0 | Bango Textures (iso republic) | 広い平坦部 / 細かい輪郭 | 風化したレンガと目地の全面テクスチャ、平坦だが微細な輪郭が密 |
 
 ### 静物（still-life）
@@ -69,8 +69,10 @@
 第三者が同一バイトを取得して受入判定を再現できるよう（完了ゲート P0-G03）、各 slot の原本 SHA-256 と
 バイト長を固定する。ハッシュ対象は下表の原寸 URL（upload.wikimedia.org の原寸直リンク）が返すバイト。
 
-- 取得日: 2026-07-25。取得方法: `curl -sL`（識別子付き User-Agent、レート制限回避のため連続取得は間隔を空ける）。
-- 全 12 枚が JPEG（先頭マジックバイト `ff d8 ff`）であることを取得後に確認済み。
+- 取得日: 2026-07-25（architecture-2 のみ差し替えのため 2026-08-10）。取得方法: 識別子付き User-Agent での
+  HTTPS 取得（レート制限回避のため連続取得は間隔を空ける）。実行例は `gates/p1/fetch_assets.py`。
+- 全 12 枚が JPEG（先頭マジックバイト `ff d8 ff`）であり、[FR-01](../requirements.md) の受入上限
+  （50MP / 100MB）内であることを取得後に確認済み。
 - 権利状態（ライセンス）・主要構図・難易度は 3 章の各表に記載し、Public Domain の根拠は 5 章に補足する。
 
 | slot | bytes | SHA-256（原本） |
@@ -82,7 +84,7 @@
 | landscape-2 | 1,344,244 | `f6fa73b7b0e8de6e891d954f44770e485b412c398b7a52cbc26cb0a7937a688a` |
 | landscape-3 | 19,378,010 | `10e874dcffe302c3c094e937cbb49ace69169dfe4c48c618656b5631b7476c26` |
 | architecture-1 | 22,095,050 | `2fa5572b9f06aac9363e3320e7dd6108104923906291979bf520bacd20fbe7cc` |
-| architecture-2 | 35,110,649 | `3f604c97fedfb30399327842dc86ecbdc937ef209806fb888b019931197debac` |
+| architecture-2 | 23,452,409 | `142cd1b4123caa934f28189d933bbbf2f4d5734895eafe0533a3b19311137c37` |
 | architecture-3 | 33,219,917 | `56828f87c71df6e872b65d1bb8a950e7ab8393104f657b095dcfe24647a463ff` |
 | still-life-1 | 156,957 | `8a8f5fa4793bb73f2ab86dbe5b2fb0317e99a4e09f81d351234babff6a4bde51` |
 | still-life-2 | 193,271 | `80e57776f3db2789ea79c0f30ce88e14aa8357e353a389290525ab4c6b847b2e` |
@@ -99,17 +101,34 @@
 | landscape-2 | <https://upload.wikimedia.org/wikipedia/commons/f/fb/Foggy_landscape_in_My%C5%A5a%2C_Hvo%C5%BE%C4%8Fany%2C_Central_Bohemia_%2851867697891%29.jpg> |
 | landscape-3 | <https://upload.wikimedia.org/wikipedia/commons/0/04/Foggy_sunrise_%2853068259930%29.jpg> |
 | architecture-1 | <https://upload.wikimedia.org/wikipedia/commons/2/23/Canterbury_Cathedral_Tower_Ceiling.jpg> |
-| architecture-2 | <https://upload.wikimedia.org/wikipedia/commons/f/f6/St_Marys_Cathedral_Nave_Edinburgh.jpg> |
+| architecture-2 | <https://upload.wikimedia.org/wikipedia/commons/a/af/Chester_Cathedral_Nave.jpg> |
 | architecture-3 | <https://upload.wikimedia.org/wikipedia/commons/8/83/Brick_Wall_Building.jpg> |
 | still-life-1 | <https://upload.wikimedia.org/wikipedia/commons/1/1e/Gorgonzola_and_a_pear.jpg> |
 | still-life-2 | <https://upload.wikimedia.org/wikipedia/commons/f/ff/Apples_garlic_cloves_still_life.jpg> |
 | still-life-3 | <https://upload.wikimedia.org/wikipedia/commons/9/93/Still_life_fruit.jpg> |
+
+### 4.2 上限超過ケース用の原本（12 枚には含めない）
+
+[FR-01](../requirements.md) の受入上限（50MP / 100MB）超過を実データで確かめるための原本を 1 枚だけ固定する。
+AC-06（異常系）専用で、AC-01〜AC-03・AC-07 の集計母集団には入れない。
+
+| 用途 | ファイル / 出典 | ライセンス | 画素数 | bytes | SHA-256 |
+| --- | --- | --- | --- | --- | --- |
+| 画素数上限超過 | [St Marys Cathedral Nave Edinburgh.jpg](https://commons.wikimedia.org/wiki/File:St_Marys_Cathedral_Nave_Edinburgh.jpg) | CC0-1.0 / Michael D Beckwith | 8,686×5,790 = 50,291,940 px | 35,110,649 | `3f604c97fedfb30399327842dc86ecbdc937ef209806fb888b019931197debac` |
+
+- 原寸 URL: <https://upload.wikimedia.org/wikipedia/commons/f/f6/St_Marys_Cathedral_Nave_Edinburgh.jpg>
+- 2026-08-10 まで architecture-2 として 12 枚に含めていたが、50MP 上限を 291,940 px 超過し通常経路で
+  受け入れられないことが P1 完了ゲートで判明した（[phase-1-gate.md](phase-1-gate.md)）。上限は要件のまま維持し、
+  本枠は同一作者・同一主題・CC0 の 50MP 未満原本へ差し替えた（[OI-005](../decisions/open-issues.md)）。
 
 ## 5. 補足
 
 - portrait-2 は Julia Margaret Cameron（1815–1879）の 1867 年撮影。Commons のテンプレートは `PD-Scan`
   （原著作物が PD-old のためスキャンも PD）。帰属要求なし。
 - architecture-3 の author 表記 "Bango Textures" は iso republic 由来の CC0 献納で、Commons 上は `cc-zero`。
+- architecture-2 は 2026-08-10 に差し替えた（[OI-005](../decisions/open-issues.md)）。旧原本（St Marys Cathedral
+  Nave Edinburgh）は 4.2 に上限超過ケース用として残す。差し替え後も作者・ライセンス（Michael D Beckwith / CC0-1.0）、
+  主題（大聖堂身廊の一点透視）、難易度割当は変わらない。
 - 外部 AI へ送信する際は [quality-and-operations.md](../quality-and-operations.md) 3章に従い不要な EXIF を除去する。
 
 ## 6. カバレッジ実測検証（P0-032）
@@ -117,37 +136,41 @@
 2章の難易度割当は目視によるため、原本画像の輝度統計で裏付けを取り、5 難易度すべてに代表画像が
 実在すること（カバレッジ充足）を確認する。
 
-- 測定日: 2026-07-25。対象は 4.1 の原寸を長辺 1024px へ縮小しグレースケール化した画像。
+- 初回測定日: 2026-07-25。architecture-2 の差し替えに伴い 2026-08-10 に全 12 枚を再測定した。
+  対象は 4.1 の原寸を長辺 1024px へ縮小しグレースケール化した画像。
 - 指標: **RMS**=輝度標準偏差、**レンジ**=第98−第2百分位、**暗部%**=輝度<0.15 画素率、
   **明部%**=輝度>0.85 画素率、**細線%**=Sobel 勾配>0.12 画素率、**平坦%**=8×8 ブロック標準偏差<0.03 率。
   閾値は 12 枚の相対比較用の便宜値であり、絶対的な難易度基準ではない。
+- 再測定は `gates/p1/measure_coverage.py` で行う。縮小は面積平均（`INTER_AREA`）、輝度は Rec.709、
+  Sobel はカーネル正規化 1/4 と、初回測定で文書化されていなかった細部を実行可能な形で固定した。
+  この固定により初回値と ±0.1〜4 ポイントの差が出るが、12 枚の相対順位と 6.1 の充足判定は変わらない。
 
 | slot | 平均 | RMS | レンジ | 暗部% | 明部% | 細線% | 平坦% |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| portrait-1 | 0.54 | 0.22 | 0.86 | 5.9 | 11.2 | 3.3 | 82.0 |
-| portrait-2 | 0.20 | 0.19 | 0.83 | 64.5 | 2.6 | 1.6 | 83.0 |
-| portrait-3 | 0.36 | 0.21 | 0.59 | 33.5 | 0.0 | 2.4 | 85.7 |
-| landscape-1 | 0.56 | 0.20 | 0.74 | 0.5 | 7.2 | 8.2 | 59.4 |
-| landscape-2 | 0.61 | 0.22 | 0.74 | 0.0 | 12.5 | 3.8 | 76.6 |
-| landscape-3 | 0.41 | 0.25 | 0.67 | 29.3 | 0.3 | 4.0 | 88.2 |
-| architecture-1 | 0.58 | 0.20 | 0.78 | 2.5 | 6.2 | 32.1 | 17.4 |
-| architecture-2 | 0.32 | 0.15 | 0.58 | 15.7 | 0.2 | 22.5 | 24.8 |
-| architecture-3 | 0.53 | 0.16 | 0.74 | 3.8 | 0.3 | 34.2 | 8.9 |
-| still-life-1 | 0.19 | 0.26 | 0.78 | 65.0 | 0.5 | 4.0 | 73.4 |
-| still-life-2 | 0.39 | 0.23 | 0.92 | 19.6 | 3.5 | 13.9 | 44.7 |
-| still-life-3 | 0.17 | 0.18 | 0.76 | 63.4 | 1.4 | 5.9 | 77.1 |
+| portrait-1 | 0.53 | 0.23 | 0.86 | 6.0 | 12.2 | 2.5 | 82.1 |
+| portrait-2 | 0.20 | 0.19 | 0.83 | 64.3 | 2.6 | 1.4 | 83.6 |
+| portrait-3 | 0.36 | 0.21 | 0.59 | 34.0 | 0.0 | 2.3 | 85.2 |
+| landscape-1 | 0.56 | 0.19 | 0.73 | 0.4 | 6.6 | 5.8 | 58.9 |
+| landscape-2 | 0.61 | 0.22 | 0.74 | 0.0 | 12.1 | 3.0 | 77.1 |
+| landscape-3 | 0.41 | 0.25 | 0.67 | 29.3 | 0.3 | 3.6 | 87.9 |
+| architecture-1 | 0.57 | 0.20 | 0.78 | 2.6 | 5.8 | 28.0 | 17.2 |
+| architecture-2 | 0.25 | 0.15 | 0.61 | 28.6 | 0.1 | 24.9 | 12.4 |
+| architecture-3 | 0.52 | 0.16 | 0.74 | 4.0 | 0.3 | 27.3 | 7.8 |
+| still-life-1 | 0.19 | 0.26 | 0.79 | 66.3 | 0.5 | 3.2 | 73.3 |
+| still-life-2 | 0.38 | 0.23 | 0.92 | 19.8 | 3.4 | 10.2 | 47.4 |
+| still-life-3 | 0.16 | 0.17 | 0.74 | 67.0 | 1.3 | 4.8 | 77.7 |
 
 ### 6.1 難易度別の充足判定
 
-- **高コントラスト**: still-life-2（レンジ 0.92 最大）、still-life-1（RMS 0.26 最大・暗部 65%＋明部側 p98 0.78）、
+- **高コントラスト**: still-life-2（レンジ 0.92 最大）、still-life-1（RMS 0.26 最大・暗部 66%＋明部側 p98 0.79）、
   architecture-1（レンジ 0.78＋強エッジ）。明暗差の大きい画像が複数実在。**充足**。
-- **低コントラスト**: architecture-2（RMS 0.15 最小・レンジ 0.58 最狭）、portrait-2（軟調・ソフトフォーカス）。
-  レンジの狭い軟調画像が実在。**充足**。
-- **細かい輪郭（細線）**: architecture-3（細線 34.2%）、architecture-1（32.1%）、architecture-2（22.5%）、
-  still-life-2（13.9%）。細部密度の高い画像が明瞭に上位。**充足**。
-- **広い平坦部**: landscape-3（88.2%）、portrait-3（85.7%）、portrait-2（83.0%）、portrait-1（82.0%）。
-  平坦率が高く、architecture 系（8.9〜24.8%）と明確に対照。**充足**。
-- **逆光**: landscape-3（暗部 29.3% のシルエット）、architecture-2（暗い内部＋奥の明窓）、
+- **低コントラスト**: architecture-2（RMS 0.15 最小）、still-life-3（RMS 0.17）、portrait-2（0.19・軟調な
+  ソフトフォーカス）。輝度分散の小さい画像が実在。**充足**。
+- **細かい輪郭（細線）**: architecture-3（細線 27.3%）、architecture-2（24.9%）、architecture-1（28.0%）、
+  still-life-2（10.2%）。細部密度の高い画像が明瞭に上位。**充足**。
+- **広い平坦部**: landscape-3（87.9%）、portrait-3（85.2%）、portrait-2（83.6%）、portrait-1（82.1%）。
+  平坦率が高く、architecture 系（7.8〜17.2%）と明確に対照。**充足**。
+- **逆光**: landscape-3（暗部 29.3% のシルエット）、architecture-2（暗い内部＋奥の明部、暗部 28.6% / 明部 0.1%）、
   landscape-1（低斜光）。**充足**（下記の測定上の限界に留意）。
 
 ### 6.2 測定上の注意
@@ -156,8 +179,11 @@
   弱くしか現れない。難易度としては構図（landscape-3 の逆光シルエット、architecture-2 の明窓）で担保し、
   実測は補助指標とする。landscape-3 が暗部シルエット最明瞭。
 - **landscape-2** の霧の軟調さは大気遠近による局所コントラスト低下で、全体 RMS（0.22）には出にくい。
-  低コントラストの代表的裏付けは architecture-2・portrait-2 のレンジ狭のほうが明瞭。2章の landscape-2 の
+  低コントラストの代表的裏付けは architecture-2・portrait-2 の RMS の小ささのほうが明瞭。2章の landscape-2 の
   低コントラスト割当は構図的性質として維持する。
+- **architecture-2** は 2026-08-10 の差し替え後も RMS 0.15 で 12 枚中最小、細線 24.9% で上位、平坦 12.4% で
+  下位という同じ位置を保つ。旧原本（RMS 0.15 / 細線 22.5% / 平坦 24.8%）と統計的性格が一致するため、
+  2章の難易度割当は変更しない。
 
 判定: 5 難易度すべてに実データで裏付く代表画像が存在し、2章の割当と整合。カバレッジは充足。
 
