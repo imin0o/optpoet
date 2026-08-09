@@ -39,6 +39,7 @@ class Stage(StrEnum):
     DENSITY_MAP = "density_map"
     EDGE_MAP = "edge_map"
     DICTIONARY = "dictionary"
+    TEXT = "text"
     OPTIMIZE = "optimize"
     RENDER = "render"
 
@@ -96,6 +97,8 @@ class ArtifactCache:
                 return self.layout.density_dir
             case Stage.DICTIONARY:
                 return self.layout.dictionary_dir
+            case Stage.TEXT:
+                return self.layout.text_dir
             case Stage.OPTIMIZE:
                 return self.layout.trace_dir
             case Stage.RENDER:
