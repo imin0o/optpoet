@@ -38,14 +38,20 @@ class GridConfig:
 
 @dataclass(frozen=True, slots=True)
 class ImageConfig:
-    """入力画像の受入上限。"""
+    """入力画像の受入上限と、画像処理の作業メモリ上限。
+
+    `max_working_bytes` は密度マップ生成の見積り上限（P1-016）。上限画素数 50MP でも
+    見積り約 1.2 GB に収まる値を既定にする（docs/environment/memory-usage.md）。
+    """
 
     max_pixels: int = 50_000_000
     max_bytes: int = 100 * 1024 * 1024
+    max_working_bytes: int = 2 * 1024 * 1024 * 1024
 
     def validate(self) -> None:
         _require_positive("image.max_pixels", self.max_pixels)
         _require_positive("image.max_bytes", self.max_bytes)
+        _require_positive("image.max_working_bytes", self.max_working_bytes)
 
 
 @dataclass(frozen=True, slots=True)
