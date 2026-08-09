@@ -13,10 +13,26 @@ from optpoet.storage import ProjectLayout, iter_refs
 
 SAMPLE_MANIFEST = Path(__file__).resolve().parents[1] / "docs" / "samples" / "manifest.sample.json"
 
+# 基準フォントの同梱は未確定のため、参照 PC の CJK フォントを使う（P0-014 スパイクと同じ）。
+FONT_CANDIDATES = (
+    Path(r"C:\Windows\Fonts\NotoSansJP-VF.ttf"),
+    Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"),
+    Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"),
+)
+
 
 @pytest.fixture(scope="session")
 def sample_manifest_text() -> str:
     return SAMPLE_MANIFEST.read_text(encoding="utf-8")
+
+
+@pytest.fixture(scope="session")
+def font_file() -> Path:
+    """実測に使える TrueType / OpenType フォント。無ければテストを飛ばす。"""
+    for candidate in FONT_CANDIDATES:
+        if candidate.is_file() and candidate.suffix != ".ttc":
+            return candidate
+    pytest.skip("実測に使える TrueType / OpenType フォントが見つからない")
 
 
 @pytest.fixture

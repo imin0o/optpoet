@@ -52,7 +52,8 @@ REF = Obj(
 
 _SIZE = Obj(required=_free("width", "height"))
 
-# 密度測定と最終描画で共有する描画設定（NFR-02。中身は P1-C で締める）
+# 密度測定と最終描画で共有する描画設定（NFR-02）。キーは
+# optpoet.font.render.RenderSettings.to_dict() に対応する（P1-023）。
 _RENDER = Obj(
     optional={
         **_free(
@@ -65,6 +66,8 @@ _RENDER = Obj(
             "background",
             "foreground",
             "antialias",
+            "anchor",
+            "variation_axes",
         ),
         "cell": _SIZE,
     }
