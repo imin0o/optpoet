@@ -88,6 +88,37 @@ class RenderSettings:
         }
 
 
+def settings_from_dict(data: dict[str, Any]) -> RenderSettings:
+    """記録した描画設定を復元する（P1-046 の再生で使う）。
+
+    エンジンとその版が記録時と違えば同じ画素を再現できないため、復元しないで止める。
+    黙って現在の版で描き直すと、記録した内容ハッシュと一致しない PNG が出る。
+    """
+    current = RenderSettings().to_dict()
+    for key in ("engine", "engine_version", "freetype_version", "layout_engine", "mode"):
+        if data.get(key) != current[key]:
+            raise StageError(
+                _STAGE,
+                "engine_mismatch",
+                f"描画エンジンが記録と違う: {key} は {data.get(key)!r} / 現在 {current[key]!r}",
+                hint="記録時と同じ Pillow / FreeType の版で開く。",
+            )
+    try:
+        cell = data["cell"]
+        return RenderSettings(
+            pixel_size=int(data["pixel_size"]),
+            cell_width=int(cell["width"]),
+            cell_height=int(cell["height"]),
+            mode=str(data["mode"]),
+            background=int(data["background"]),
+            foreground=int(data["foreground"]),
+            anchor=str(data["anchor"]),
+            variation_axes=tuple(float(value) for value in data["variation_axes"]),
+        )
+    except (KeyError, TypeError, ValueError) as exc:
+        raise _invalid_settings(f"描画設定を復元できない: {exc}") from exc
+
+
 def load_font(profile: FontProfile, settings: RenderSettings) -> ImageFont.FreeTypeFont:
     """測定・描画で共有するフォントを読み込む唯一の入口。"""
     settings.validate()

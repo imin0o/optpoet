@@ -73,6 +73,19 @@ _RENDER = Obj(
     }
 )
 
+# 最終描画の見た目（P1-041）。1 セルの画素を変えないため `render_settings` とは分ける
+# （I-03 は `render_settings` と `render_metadata` の一致を要求する）。
+_STYLE = Obj(
+    optional=_free(
+        "char_spacing",
+        "line_spacing",
+        "foreground_color",
+        "background_color",
+        "binarize",
+        "invert",
+    )
+)
+
 _PROVENANCE = Obj(
     required={
         "model_id": Obj(
@@ -225,7 +238,12 @@ MANIFEST_SPEC = Obj(
             }
         ),
         "outputs": Obj(
-            optional={"png_ref": REF, "txt_ref": REF, "render_metadata": _RENDER},
+            optional={
+                "png_ref": REF,
+                "txt_ref": REF,
+                "render_metadata": _RENDER,
+                "style": _STYLE,
+            },
         ),
     }
 )

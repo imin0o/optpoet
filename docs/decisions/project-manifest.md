@@ -147,6 +147,7 @@ manifest 中のすべての外部実体参照は次の形を取る。物理配�
 | `evaluation.cell_check` | 条件付き必須 | 表示文字数とセル数の一致検証結果（AC-01） |
 | `outputs.png_ref` / `outputs.txt_ref` | 条件付き必須 | 最終 PNG・UTF-8 TXT の ref（`hash` が再生一致判定の基準、AC-04） |
 | `outputs.render_metadata` | 条件付き必須 | 出力時の描画条件（`fonts.render_settings` と一致すること、NFR-02） |
+| `outputs.style` | 条件付き必須 | 出力時の見た目（字間・行間・文字色・背景色・二値化・反転、FR-12 / P1-041）。1 セルの画素を変えないため I-03 の一致対象から外し、`render_metadata` と分けて持つ |
 
 ## 不変条件（読込時に検証する）
 

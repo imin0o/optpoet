@@ -383,6 +383,14 @@
       "background": 255,
       "foreground": 0,
       "antialias": true
+    },
+    "style": {
+      "char_spacing": 64,
+      "line_spacing": 64,
+      "foreground_color": [0, 0, 0],
+      "background_color": [255, 255, 255],
+      "binarize": null,
+      "invert": false
     }
   }
 }
